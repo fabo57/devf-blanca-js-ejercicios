@@ -25,8 +25,22 @@
            */
 
           // Tu código acá!
+       var n1 = parseInt(document.querySelector("#numero1").value)
+       var n2 = parseInt(document.querySelector("#numero2").value)
+       var n3 = parseInt(document.querySelector("#numero3").value)
+       var maximo = max (n1, n2);
+       maximo = max (maximo, n3);
+       var resultado = document.querySelector("#resultado");
+       resultado.innerHTML = "Max: " + maximo;
         }
-
+          function max(numero1, numero2) {
+        var maximo
+        if (numero1 > numero2){
+        maximo = numero1
+        } else {
+          maximo = numero2;
+        }
+      }
         // Pega tu función "max" acá:
 
     </script>
