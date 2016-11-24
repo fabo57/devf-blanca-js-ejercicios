@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arreglos</title>
+
+
+  <link rel="stylesheet" href="../_recursos/main.css">
+</head>
+<body>
+  <h1> Arreglos </h1>
+
+
+	<label for="sleccion"> Escoge tu arman</label>
+	<select name="sleccion" id="sleccion">
+		<option value="piedra">piedra</option>
+		<option value="papel">papel</option>
+		<option value="tijeras">tijeras</option>
+	</select>
+	<button onclick="jugar()"> JUGAR </button>
+  
+
+	<div id="resultado"></div>
+  <script>
+  function jugar(){
+  var items = ["piedra","papel","tijeras"]
+  // 			0		  1		  2
+
+  var sleccion_maquina = maquina_escoge(items);
+  var sleccion_jugador = document.querySelector("#sleccion").value;
+ 
+  var reglas = {
+  	piedra: {papel: "pierde", tijeras: "gana"},
+  	papel: {tijeras: "pierde", piedra: "gana"},
+  	tijeras: {piedra: "pierde", papel: "gana"}
+  }
+
+
+  var ganador = definir_ganador(sleccion_jugador, sleccion_maquina, reglas);
+  dibujar("La maquina escogio: " + sleccion_maquina + ", por lo tanto: " + ganador);
+}
+  //dibujar(items[0]);
+  //dibujar(items[1]);
+  //dibujar(items[2]);
+
+  function definir_ganador(s_jugador, s_maquina, reglas){
+  	if (s_maquina == s_jugador){
+  			return "empate";
+  	}
+  	var regla = reglas[s_jugador];
+ 	//console.log(regla)
+ 	return regla[s_maquina];
+ }
+ function ganador_sencillo (s_jugador, gana, pierde){
+ 	if (s_jugador == pierde) {
+  	//	return ganador_sencillo(s_jugador, "papel", "tijeras");
+  	//} else 
+  	return "ganaste"
+  } else "Ganaste!";{
+  	return "perdiste :("
+  }
+}
+
+function maquina_escoge(items){
+	var n_random = Math.floor(Math.random() * 3);
+	return items[n_random]
+	//
+	//Math.random -> 0.00001 -> 0.00009
+	//Math.round, .floor, .ceil, trunc
+}
+
+  function dibujar(valor){
+  document.querySelector("#resultado").innerHTML = valor;
+  //console.log(items[0]);
+}
+
+
+
+// COMPLETAR LA LOGICA DE JUEGO CON IF Y ELSE: JUGADOR O MAQUINA!!!!
+  </script>
+</body>
+</html>
